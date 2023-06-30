@@ -4,22 +4,34 @@ package org.example;
 
 public class HW1T4 {
     public static void main(String[] args) {
-        int q, w, e;
-        int solutionsCount = 0;
+        boolean solutionFound = false;
 
-        for (q = 0; q <= 9; q++) {
-            for (w = 0; w <= 9; w++) {
-                for (e = 0; e <= 9; e++) {
-                    if (q + w == e) {
+        for (int q = 0; q <= 9; q++) {
+            for (int w = 0; w <= 9; w++) {
+                for (int e = 0; e <= 9; e++) {
+                    if (isValidEquation(q, w, e)) {
                         System.out.println(q + " + " + w + " = " + e);
-                        solutionsCount++;
+                        solutionFound = true;
                     }
                 }
             }
         }
 
-        if (solutionsCount == 0) {
+        if (!solutionFound) {
             System.out.println("No solution found.");
         }
+    }
+
+    private static boolean isValidEquation(int q, int w, int e) {
+        if (q + w == e) {
+            return true;
+        }
+
+        // Проверяем, являются ли знаки вопроса допустимыми заменами
+        if (q == -1 || w == -1 || e == -1) {
+            return true;
+        }
+
+        return false;
     }
 }
